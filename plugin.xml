@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Grid Layout XML Editor"
+            extensions="xml"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="autle.editors.GridLayoutXMLEditor"
+            id="autle.editors.GridLayoutXMLEditor">
+      </editor>
+      <editor
+            class="autle.editors.AUTLEClassDiagramEditor"
+            default="true"
+            extensions="aut"
+            id="autle.editors.AUTLEClassDiagramEditor"
+            name="AUTLE Class Diagram Editor">
+      </editor>
+      <editor
+            class="autle.editors.ClassDiagramEditor"
+            default="true"
+            extensions="grd"
+            id="autle.editors.GridClassDiagramEditor"
+            name="Grid Class Diagram Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Sample Action Set"
+            visible="true"
+            id="AUTLE.actionSet">
+         <menu
+               label="Sample &amp;Menu"
+               id="sampleMenu">
+            <separator
+                  name="sampleGroup">
+            </separator>
+         </menu>
+         <action
+               label="&amp;Sample Action"
+               icon="icons/sample.gif"
+               class="autle.actions.LayoutAction"
+               tooltip="Hello, Eclipse world"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               id="autle.actions.LayoutAction">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="AUTLE.contribution1">
+         <menu
+               label="Layout Submenu"
+               path="additions"
+               id="AUTLE.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="New Action"
+               class="autle.popup.actions.NewAction"
+               menubarPath="AUTLE.menu1/group1"
+               enablesFor="1"
+               id="AUTLE.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="AUTLE Preferences"
+            class="autle.preferences.AUTLEPreferencePage"
+            id="autle.preferences.AUTLEPreferencePage">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="autle.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="AUTLE Category"
+            id="AUTLE">
+      </category>
+      <view
+            name="AUTLE View"
+            icon="icons/sample.gif"
+            category="AUTLE"
+            class="autle.views.AUTLEView"
+            id="autle.views.AUTLEView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="autle.views.AUTLEView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="autle.diagram"
+            name="AUTLE Diagrams">
+      </category>
+      <wizard
+            category="autle.diagram"
+            class="autle.diagram.NewAUTLEClassDiagramWizard"
+            id="autle.diagram.NewAUTLEClassDiagramWizard"
+            name="New AUTLE Class Diagram">
+      </wizard>
+   </extension>
+
+</plugin>
